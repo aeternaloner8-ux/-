@@ -260,6 +260,24 @@
   .foot-bottom{display:flex;justify-content:space-between;padding-top:26px;color:var(--muted);font-size:13px;flex-wrap:wrap;gap:10px}
   .foot-huge{font-size:clamp(60px,16vw,260px);font-weight:800;letter-spacing:-.04em;line-height:.8;text-align:center;padding:40px 0 0;text-transform:uppercase;color:rgba(255,255,255,.05)}
 
+  /* ---------------- CONSULT FORM ---------------- */
+  .consult-sec{padding:40px 0 100px;scroll-margin-top:100px}
+  .consult-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+  .consult-title{font-size:clamp(30px,4vw,56px);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:1;margin-bottom:18px}
+  .consult-lead{color:var(--muted);max-width:380px;font-size:16px}
+  .lead-form{display:grid;gap:16px;max-width:520px}
+  .lead-form .field{display:flex;flex-direction:column;gap:8px}
+  .lead-form label{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+  .lead-form input,.lead-form textarea{background:var(--black-2);border:1px solid var(--line);border-radius:12px;padding:15px 18px;color:#fff;font-family:inherit;font-size:15px;transition:border-color .25s}
+  .lead-form input:focus,.lead-form textarea:focus{outline:none;border-color:var(--orange)}
+  .lead-form textarea{min-height:120px;resize:vertical}
+  .btn-orange-solid{background:var(--orange);color:#fff}
+  .btn-orange-solid:hover{background:var(--orange-soft);transform:translateY(-2px)}
+  .form-msg{display:none;border-radius:12px;padding:15px 18px;font-size:15px}
+  .form-msg.ok{display:block;background:rgba(255,77,18,.12);border:1px solid var(--orange);color:#fff}
+  .form-msg.err{display:block;background:rgba(255,80,80,.12);border:1px solid #ff5b5b;color:#fff}
+  @media(max-width:768px){.consult-grid{grid-template-columns:1fr;gap:30px}}
+
   /* ---------------- REVEAL ---------------- */
   .reveal{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
@@ -314,7 +332,7 @@
       <div class="nav-right">
         <a href="#" class="ic-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></a>
         <a href="#" class="ic-btn" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="#fff"><path d="M21.5 4.5L2.5 11.8c-1 .4-1 1.4-.1 1.7l4.9 1.5 1.9 5.9c.2.6.9.7 1.3.2l2.7-2.9 4.9 3.6c.6.4 1.4.1 1.5-.6l3-14.1c.2-.9-.6-1.6-1.5-1.1z"/></svg></a>
-        <a href="#cta" class="consult"><span>Консультация</span><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a href="#consult" class="consult"><span>Консультация</span><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         <button class="menu-toggle">☰</button>
       </div>
     </nav>
@@ -332,9 +350,9 @@
         <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" alt="" />
       </div>
 
-      <div class="cta-circle reveal">
+      <a href="#consult" class="cta-circle reveal">
         <span>Запросить<br/>консультацию<span class="ar">↗</span></span>
-      </div>
+      </a>
 
       <div class="stats-float">
         <div class="glass-card reveal"><div class="big">120+</div><div class="lbl">домов сдано</div></div>
@@ -461,9 +479,30 @@
       <h2>Создадим ваш дом</h2>
       <p>Расскажите о вашем участке и образе жизни — пришлём индивидуальную концепцию и фиксированную смету в течение дня.</p>
       <div class="cta-actions">
-        <button class="btn btn-light">Записаться на консультацию ↗</button>
-        <button class="btn btn-ghost">Скачать каталог</button>
+        <a href="#consult" class="btn btn-light">Записаться на консультацию ↗</a>
+        <a href="#consult" class="btn btn-ghost">Скачать каталог</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONSULT FORM ============ -->
+<section id="consult" class="consult-sec">
+  <div class="wrap">
+    <div class="consult-grid">
+      <div class="reveal">
+        <div class="eyebrow">Заявка</div>
+        <h2 class="consult-title">Записаться на<br/>консультацию</h2>
+        <p class="consult-lead">Оставьте контакты — рассчитаем стоимость вашего дома и перезвоним в течение дня.</p>
+      </div>
+      <form id="leadForm" class="lead-form reveal">
+        <div class="field"><label for="name">Имя</label><input id="name" name="name" type="text" placeholder="Как к вам обращаться" required></div>
+        <div class="field"><label for="phone">Телефон</label><input id="phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" required></div>
+        <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" placeholder="you@example.com"></div>
+        <div class="field"><label for="message">Сообщение</label><textarea id="message" name="message" placeholder="Участок, бюджет, пожелания"></textarea></div>
+        <button type="submit" class="btn btn-orange-solid">Отправить заявку ↗</button>
+        <div id="formMsg" class="form-msg"></div>
+      </form>
     </div>
   </div>
 </section>
@@ -505,6 +544,24 @@
   // subtle hero parallax
   const heroBg=document.getElementById('heroBg');
   addEventListener('scroll',()=>{const y=scrollY;if(y<900)heroBg.style.transform='translateY('+(y*0.18)+'px)'},{passive:true});
+
+  // lead form -> сохранение заявки в базу
+  const form=document.getElementById('leadForm');
+  if(form)form.addEventListener('submit',async(e)=>{
+    e.preventDefault();
+    const msg=document.getElementById('formMsg');
+    const data={name:form.name.value,phone:form.phone.value,email:form.email.value,message:form.message.value};
+    try{
+      const r=await fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+      if(!r.ok)throw new Error('bad');
+      msg.className='form-msg ok';
+      msg.textContent='Спасибо! Заявка сохранена — мы свяжемся с вами в течение дня.';
+      form.reset();
+    }catch(err){
+      msg.className='form-msg err';
+      msg.textContent='Не удалось отправить заявку. Попробуйте позже или позвоните нам.';
+    }
+  });
 </script>
 </body>
 </html>
